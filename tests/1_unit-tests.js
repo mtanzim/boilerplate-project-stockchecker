@@ -7,12 +7,16 @@
 */
 
 var chai = require('chai');
-var StockHandler = require('../controllers/stockHandler.js');
+var assert = chai.assert;
+// var StockHandler = require('../controllers/stockHandler.js');
 
-var stockPrices = new StockHandler();
+// var stockPrices = new StockHandler();
 
 suite('Unit Tests', function(){
 
-//none requiered
+  // health-check
+  test('Mocha Health-check', function () {
+    assert.isTrue(true, 'true is true');
+  });
 
 });
