@@ -16,10 +16,11 @@ var app = express();
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"],
-    styleSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
     scriptSrc: [
       "'self'",
-      "https://code.jquery.com/jquery-2.2.1.min.js"],
+      "'unsafe-inline'",
+      "code.jquery.com"],
   }
 }));
 
