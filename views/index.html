@@ -91,7 +91,9 @@
             $('#jsonResult').text(JSON.stringify(data));
           },
           error: function (result, status, xhr) {
-            console.log(result);
+            $('#jsonResult').text(result.responseText);
+            // console.log(result);
+            // console.log(result.responseText);
           },
         });
         e.preventDefault();
@@ -105,7 +107,9 @@
             $('#jsonResult').text(JSON.stringify(data));
           },
           error: function (result, status, xhr) {
-            console.log(result);
+            $('#jsonResult').text(result.responseText);
+            // console.log(result);
+            // console.log(result.responseText);
           },
         });
         e.preventDefault();
