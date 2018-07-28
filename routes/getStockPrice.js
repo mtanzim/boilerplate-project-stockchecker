@@ -1,5 +1,4 @@
 const axios = require('axios');
-
 module.exports = function getStockPrice(symbol) {
 
   const ALPHAKEY = process.env.ALPHAKEY;

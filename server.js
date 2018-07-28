@@ -1,8 +1,9 @@
 require('dotenv').load();
 
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
-var expect = require('chai').expect;
+// var expect = require('chai').expect;
 var cors = require('cors');
 var helmet = require('helmet');
 
@@ -22,6 +23,13 @@ app.use(helmet.contentSecurityPolicy({
       "'unsafe-inline'",
       "code.jquery.com"],
   }
+}));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  // cookie: { secure: true }
 }));
 
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -57,15 +65,21 @@ app.use(function (req, res, next) {
 }); */
 
 // error handling middleware
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   if (process.env.NODE_ENV==='dev') {
-    // console.log(err.stack);
-    console.log(`Error found: ${err.message}`);
+    console.log(err.stack);
+    console.log(`Server error: ${err.message}`);
   }
 
+
+
   // send server error
-  res.status(500).send(`Error found: ${err.message}`);
-})
+  // return res
+  //   .status(500)
+  //   // .type('text')
+  //   // .send(`Server error: ${err.message}`);
+  //   .json({error:err.message});
+});
 
 //Start our server and tests!
 app.listen(process.env.PORT || 3000, function () {
